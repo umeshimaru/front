@@ -1,6 +1,7 @@
 FROM node:23-alpine
 WORKDIR /app
 COPY package*.json ./
+COPY certificates /app/certificates
 RUN npm install
 EXPOSE 8080
 CMD ["npm", "run", "dev"]
