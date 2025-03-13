@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { useState, useRef, useEffect } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { Menu, UserPlus, LogIn } from "lucide-react"
+import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Menu, UserPlus, LogIn } from "lucide-react";
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const menuButtonRef = useRef<HTMLButtonElement>(null)
-  const menuRef = useRef<HTMLDivElement>(null)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -18,15 +18,15 @@ export function Header() {
         menuButtonRef.current &&
         !menuButtonRef.current.contains(event.target as Node)
       ) {
-        setIsMenuOpen(false)
+        setIsMenuOpen(false);
       }
-    }
+    };
 
-    document.addEventListener("mousedown", handleClickOutside)
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <header className="border-b bg-[#f5f9fa]">
@@ -40,9 +40,9 @@ export function Header() {
               height={32}
               className="w-8 h-8"
             />
-            <a href="/" className="text-[#2d7f98] text-xl font-bold">
+            <Link href="/" className="text-[#2d7f98] text-xl font-bold">
               SPECON
-            </a>
+            </Link>
           </div>
 
           {/* Desktop navigation */}
@@ -102,6 +102,5 @@ export function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }
-
