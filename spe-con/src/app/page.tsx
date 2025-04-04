@@ -8,7 +8,7 @@ export default function Page() {
   useEffect(() => {
     const getWord = async () => {
   
-        const res = await fetch("https://0.0.0.0:3000/memos"); // ローカル環境用URL
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/memos`); 
         const text = await res.json();
         console.log(text);
         setWord(text);
