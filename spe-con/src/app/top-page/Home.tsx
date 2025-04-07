@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Card, CardTitle, CardDescription } from "@/components/ui/card"
+import { Card, CardTitle, CardDescription } from "@/app/top-page/components/card"
 
 export function Home() {
   return (

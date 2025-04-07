@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils"
-import { CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { CardHeader, CardTitle, CardDescription } from "@/app/top-page/components/card"
 
 interface SectionHeadingProps {
   title: string
