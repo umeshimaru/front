@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/app/top-page/components/card"
 
 interface FeatureProps {
   title: string
