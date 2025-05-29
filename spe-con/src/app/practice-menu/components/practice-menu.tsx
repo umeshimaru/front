@@ -5,7 +5,6 @@ import { Languages, RefreshCw, Camera, BookOpen, ChevronRight } from "lucide-rea
 import type { LucideIcon } from "lucide-react"
 import styles from "../styles/practice-menu.module.css"
 
-
 interface MenuItem {
   id: string
   title: string
@@ -80,11 +79,8 @@ export function PracticeMenu({ onItemSelect, selectedItem: controlledSelected }:
     console.log(`Selected: ${itemId}`)
   }
 
-
   return (
-   
     <div className={styles.container}>
-    
       {/* ヘッダー */}
       <div className={styles.header}>
         <div className={styles.headerContent}>
