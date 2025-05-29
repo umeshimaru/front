@@ -9,10 +9,10 @@ export function Home() {
   const isLogin = useAtom(isLoginAtom);
   const router = useRouter();
 
-  // useEffect(() => {
-  //   if (isLogin) 
-  //     router.push("/practice-menu");
-  // }, [isLogin, router]);
+  useEffect(() => {
+    if (isLogin) 
+      router.push("/practice-menu");
+  }, [isLogin, router]);
 
 
   return (
