@@ -1,0 +1,574 @@
+/* practice-menuコンポーネント専用スタイル - 完全に独立 */
+
+/* ベーススタイル - グローバルスタイルから完全に分離 */
+.container {
+  /* リセット */
+  all: initial;
+
+  /* 基本設定 */
+  width: 100%;
+  max-width: 24rem;
+  margin: 0 auto;
+  background-color: white;
+  min-height: 100vh;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  font-family: "Hiragino Sans", "ヒラギノ角ゴシック", "Yu Gothic", "メイリオ", Arial, sans-serif;
+  color: #1f2937;
+  line-height: 1.5;
+  box-sizing: border-box;
+
+  /* 子要素にもbox-sizingを継承 */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 80rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 96rem;
+  }
+}
+
+/* グラデーション定義 */
+.gradientBeginner {
+  background: linear-gradient(to bottom right, #3b82f6, #2563eb) !important;
+}
+
+.gradientIntermediate {
+  background: linear-gradient(to bottom right, #10b981, #059669) !important;
+}
+
+.gradientAdvanced {
+  background: linear-gradient(to bottom right, #8b5cf6, #7c3aed) !important;
+}
+
+/* バッジカラー定義 */
+.badgeBeginner {
+  background: linear-gradient(to right, #3b82f6, #2563eb) !important;
+}
+
+.badgeIntermediate {
+  background: linear-gradient(to right, #10b981, #059669) !important;
+}
+
+.badgeAdvanced {
+  background: linear-gradient(to right, #8b5cf6, #7c3aed) !important;
+}
+
+/* ヘッダー */
+.header {
+  background-color: #d6f0f5;
+  padding: 1.5rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .header {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .header {
+    padding: 2.5rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header {
+    padding: 3rem 2.5rem;
+  }
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .headerContent {
+    gap: 1rem;
+  }
+}
+
+.iconWrapper {
+  background-color: white;
+  border-radius: 50%;
+  padding: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.headerIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #374151;
+}
+
+@media (min-width: 640px) {
+  .headerIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .headerIcon {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+  font-family: inherit;
+}
+
+@media (min-width: 640px) {
+  .title {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .title {
+    font-size: 1.875rem;
+  }
+}
+
+/* サブタイトル */
+.subtitle {
+  padding: 0.75rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+@media (min-width: 640px) {
+  .subtitle {
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .subtitle {
+    padding: 1.25rem 2rem;
+  }
+}
+
+.subtitleText {
+  font-size: 0.75rem;
+  color: #6b7280;
+  line-height: 1.625;
+  margin: 0;
+  font-family: inherit;
+}
+
+@media (min-width: 640px) {
+  .subtitleText {
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .subtitleText {
+    font-size: 1rem;
+  }
+}
+
+/* メニューコンテナ */
+.menuContainer {
+  padding: 1.5rem 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .menuContainer {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .menuContainer {
+    padding: 2.5rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .menuContainer {
+    padding: 3rem 2.5rem;
+  }
+}
+
+/* モバイルレイアウト */
+.mobileLayout {
+  width: 100%;
+  max-width: 28rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .mobileLayout {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobileLayout {
+    display: none;
+  }
+}
+
+.mobileCard {
+  background-color: #e5e7eb !important;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: 2px solid transparent;
+  position: relative;
+}
+
+@media (min-width: 640px) {
+  .mobileCard {
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+}
+
+.mobileCard:hover {
+  background-color: #d1d5db !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  transform: translateY(-0.25rem) scale(1.02) !important;
+}
+
+.mobileCard.mobileSelected {
+  border-color: #60a5fa !important;
+  background-color: #dbeafe !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  transform: scale(1.02) !important;
+}
+
+.mobileIcon {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .mobileIcon {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+.mobileCard:hover .mobileIcon {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+
+.mobileIconSvg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .mobileIconSvg {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+}
+
+.mobileContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.mobileBadgeWrapper {
+  margin-bottom: 0.25rem;
+}
+
+.mobileLevelBadge {
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  display: inline-block;
+  font-family: inherit;
+}
+
+.mobileTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 0.25rem 0;
+  font-family: inherit;
+}
+
+@media (min-width: 640px) {
+  .mobileTitle {
+    font-size: 1.125rem;
+  }
+}
+
+.mobileDescription {
+  font-size: 0.75rem;
+  color: #6b7280;
+  line-height: 1.625;
+  margin: 0;
+  font-family: inherit;
+}
+
+@media (min-width: 640px) {
+  .mobileDescription {
+    font-size: 0.875rem;
+  }
+}
+
+.mobileArrow {
+  color: #9ca3af;
+  transition: all 0.3s ease;
+}
+
+.mobileCard:hover .mobileArrow {
+  color: #6b7280 !important;
+  transform: translateX(0.25rem) !important;
+}
+
+.mobileArrowIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .mobileArrowIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+/* デスクトップレイアウト */
+.desktopLayout {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .desktopLayout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 64rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .desktopLayout {
+    gap: 2rem;
+  }
+}
+
+.desktopCard {
+  background-color: #e5e7eb !important;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  min-height: 15rem;
+  border: 3px solid transparent;
+}
+
+@media (min-width: 1024px) {
+  .desktopCard {
+    padding: 2rem;
+    min-height: 17.5rem;
+  }
+}
+
+.desktopCard:hover {
+  background-color: #d1d5db !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  transform: translateY(-0.5rem) scale(1.02) !important;
+}
+
+.desktopCard.desktopSelected {
+  border-color: #60a5fa !important;
+  background-color: #dbeafe !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  transform: scale(1.02) !important;
+}
+
+.desktopBadgeWrapper {
+  margin-bottom: 1rem;
+}
+
+.desktopLevelBadge {
+  color: white;
+  font-size: 0.875rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  font-family: inherit;
+}
+
+@media (min-width: 1024px) {
+  .desktopLevelBadge {
+    font-size: 1rem;
+  }
+}
+
+.desktopIcon {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .desktopIcon {
+    width: 5rem;
+    height: 5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.desktopCard:hover .desktopIcon {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+
+.desktopIconSvg {
+  width: 2rem;
+  height: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .desktopIconSvg {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+.desktopContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.desktopTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 0.5rem 0;
+  font-family: inherit;
+}
+
+@media (min-width: 1024px) {
+  .desktopTitle {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+.desktopDescription {
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.625;
+  margin: 0;
+  font-family: inherit;
+}
+
+@media (min-width: 1024px) {
+  .desktopDescription {
+    font-size: 1rem;
+  }
+}
+
+.desktopArrow {
+  color: #9ca3af;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.desktopCard:hover .desktopArrow {
+  color: #6b7280 !important;
+  transform: translateY(0.25rem) !important;
+}
+
+.desktopArrowIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .desktopArrowIcon {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+}
+
+/* アニメーション */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobileCard,
+.desktopCard {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+/* アクセシビリティ */
+.mobileCard:focus,
+.desktopCard:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
