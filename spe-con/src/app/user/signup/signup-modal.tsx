@@ -1,4 +1,4 @@
-"use client"
+
 import { useState } from "react"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -7,22 +7,33 @@ import { Button } from "@/app/common/components/layouts/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/app/common/components/layouts/ui/form"
 import { Input } from "@/app/common/components/layouts/ui/input"
 import { PasswordInput } from "../components/password-input"
+import { setCookie } from 'cookies-next';
+import { isLoginAtom } from '@/app/atoms/isLoginState';
+import { useAtom } from 'jotai';
+import { useRouter } from 'next/navigation';
+import { ToastContainer, toast } from 'react-toastify'
+
+
+
+
+
 
 // フォームのバリデーションスキーマ
-const signupFormSchema = z
-  .object({
-    name: z.string().min(2, {
-      message: "名前は2文字以上で入力してください",
+  const signupFormSchema = z.object({
+    email: z.string().email({
+      message: "有効なメールアドレスを入力してください",
     }),
     password: z.string().min(8, {
       message: "パスワードは8文字以上で入力してください",
     }),
-    confirmPassword: z.string(),
+    password_confirmation: z.string().min(8, { message: "パスワード（確認）も8文字以上で入力してください" }),
   })
-  .refine((data) => data.password === data.confirmPassword, {
+  .refine((data) => data.password === data.password_confirmation, {
     message: "パスワードが一致しません",
-    path: ["confirmPassword"],
-  })
+    path: ["password_confirmation"],
+  });
+  
+
 
 type SignupFormValues = z.infer<typeof signupFormSchema>
 
@@ -33,54 +44,111 @@ interface SignupModalProps {
 
 export function SignupModal({ onSuccess, onSwitchToLogin }: SignupModalProps) {
   const [isLoading, setIsLoading] = useState(false)
+  const [,setIsLogin] = useAtom(isLoginAtom);
+  const router = useRouter();
+  
+
+
+
 
   // フォームの初期化
   const form = useForm<SignupFormValues>({
     resolver: zodResolver(signupFormSchema),
     defaultValues: {
-      name: "",
+      email: "",
       password: "",
-      confirmPassword: "",
-    },
+      password_confirmation: ""
+    }
   })
+  
+  const { setError } = form
 
   // フォーム送信処理
-  async function onSubmit(values: SignupFormValues) {
+  async function onSubmit(value: SignupFormValues) {
     setIsLoading(true)
 
     try {
-      // ここに実際のサインアップ処理を実装
-      console.log(values)
+     const res =  await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(value)
+          
+     })
 
-      // 成功したら3秒後にコールバック実行（デモ用）
+     const data = await res.json()
+
+     if (data.errors) {
+      Object.entries(data.errors).forEach(([field, messages]) => {
+        setError(field as keyof SignupFormValues, {
+          type: "server",
+          message: Array.isArray(messages) ? messages.join("、") : String(messages)
+        })
+      })
+      return 
+    }
+
+  
+     setCookie("_access_token",  res.headers.get("access-token"));
+     setCookie("_client", res.headers.get("client") );
+     setCookie("_uid", res.headers.get("uid"));
+     setIsLogin(true)
+     toast.success('😇 登録完了', {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      });
+     setTimeout(() => {
+      router.push('/practice-menu');
+    }, 2000); 
+
+ 
+
+
+    
+
+
       setTimeout(() => {
         if (onSuccess) onSuccess()
         form.reset()
-      }, 3000)
-    } catch (error) {
-      console.error("サインアップエラー:", error)
-    } finally {
+      }, 1000)
+    }
+    finally {
       setIsLoading(false)
+  
     }
   }
 
   return (
     <>
+    <ToastContainer />
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 sm:space-y-4 py-4">
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-sm sm:text-base">お名前</FormLabel>
-                <FormControl>
-                  <Input placeholder="山田 太郎" {...field} className="h-9 sm:h-10 text-sm sm:text-base" />
-                </FormControl>
-                <FormMessage className="text-xs sm:text-sm" />
-              </FormItem>
-            )}
-          />
+<FormField
+  control={form.control}
+  name="email"
+  render={({ field }) => (
+    <FormItem>
+      <FormLabel className="text-sm sm:text-base">メールアドレス</FormLabel>
+      <FormControl>
+        <Input
+          type="email"
+          placeholder="sample@example.com"
+          {...field}
+          className="h-9 sm:h-10 text-sm sm:text-base"
+        />
+      </FormControl>
+      <FormMessage className="text-xs sm:text-sm" />
+    </FormItem>
+  )}
+/>
+
 
           <FormField
             control={form.control}
@@ -95,19 +163,19 @@ export function SignupModal({ onSuccess, onSwitchToLogin }: SignupModalProps) {
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="confirmPassword"
-            render={({ field }) => (
-              <PasswordInput
-                name="confirmPassword"
-                label="パスワード（確認）"
-                placeholder="パスワードを再入力"
-                field={field}
-              />
-            )}
-          />
-
+<FormField
+  control={form.control}
+  name="password_confirmation"
+  render={({ field }) => (
+    <PasswordInput
+      name="password_confirmation"
+      label="パスワード（確認）"
+      placeholder="パスワードを再入力"
+      field={field}
+    />
+  )}
+/>
+     
           <Button
             type="submit"
             className="w-full bg-[#2d7f98] hover:bg-[#236a80] h-9 sm:h-10 text-sm sm:text-base mt-2"

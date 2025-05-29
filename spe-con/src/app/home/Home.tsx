@@ -1,7 +1,20 @@
 import Image from "next/image"
-import { Card, CardTitle, CardDescription } from "@/app/top-page/components/card"
+import { Card, CardTitle, CardDescription } from "@/app/home/components/card"
+import { useEffect } from "react"
 
+import { useRouter } from "next/navigation";
+import { useAtom } from 'jotai';
+import { isLoginAtom } from '@/app/atoms/isLoginState';
 export function Home() {
+  const isLogin = useAtom(isLoginAtom);
+  const router = useRouter();
+
+  // useEffect(() => {
+  //   if (isLogin) 
+  //     router.push("/practice-menu");
+  // }, [isLogin, router]);
+
+
   return (
     <>
       {/* Hero Section */}
