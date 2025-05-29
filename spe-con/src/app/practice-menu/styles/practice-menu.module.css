@@ -1,6 +1,6 @@
 /* practice-menuコンポーネント専用スタイル */
 
-/* ベーススタイル */
+/* コンテナ */
 .container {
   width: 100%;
   max-width: 24rem;
@@ -10,7 +10,6 @@
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   font-family: "Hiragino Sans", "ヒラギノ角ゴシック", "Yu Gothic", "メイリオ", Arial, sans-serif;
   color: #1f2937;
-  line-height: 1.5;
 }
 
 @media (min-width: 768px) {
@@ -550,4 +549,81 @@
 .desktopCard:focus {
   outline: 2px solid #3b82f6;
   outline-offset: 2px;
+}
+
+.mobileCard:focus-visible,
+.desktopCard:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* ダークモード時のスタイル調整 */
+.container.dark .header {
+  background-color: #374151;
+}
+
+.container.dark .title {
+  color: #f9fafb;
+}
+
+.container.dark .subtitleText {
+  color: #d1d5db;
+}
+
+.container.dark .mobileCard,
+.container.dark .desktopCard {
+  background-color: #374151;
+  border-color: #4b5563;
+}
+
+.container.dark .mobileCard:hover,
+.container.dark .desktopCard:hover {
+  background-color: #4b5563;
+}
+
+.container.dark .mobileTitle,
+.container.dark .desktopTitle {
+  color: #f9fafb;
+}
+
+.container.dark .mobileDescription,
+.container.dark .desktopDescription {
+  color: #d1d5db;
+}
+
+.container.dark .iconWrapper {
+  background-color: #4b5563;
+}
+
+.container.dark .headerIcon {
+  color: #f9fafb;
+}
+
+/* スクロールバーのスタイリング */
+.container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.container::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* 選択テキストのスタイル */
+.container ::selection {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.container ::-moz-selection {
+  background-color: #3b82f6;
+  color: white;
 }
