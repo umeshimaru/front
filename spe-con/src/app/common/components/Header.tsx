@@ -70,6 +70,7 @@ export function Header() {
       deleteCookie('_client');
       deleteCookie('_uid');
       setIsLogin(false);
+      console.log(res)
       toast.warn('👋 ログアウトしました', {
         position: 'top-center',
         autoClose: 1000,
