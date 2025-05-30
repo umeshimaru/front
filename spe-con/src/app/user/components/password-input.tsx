@@ -1,14 +1,19 @@
-"use client"
-import { useState } from "react"
-import { EyeIcon, EyeOffIcon } from "lucide-react"
-import { FormControl, FormItem, FormLabel, FormMessage } from "@/app/common/components/layouts/ui/form"
-import { Input } from "@/app/common/components/layouts/ui/input"
-import { Button } from "@/app/common/components/layouts/ui/button"
-import type {  ControllerRenderProps, FieldValues, FieldPath  } from "react-hook-form"
+'use client';
+import { useState } from 'react';
+import { EyeIcon, EyeOffIcon } from 'lucide-react';
+import {
+  FormControl,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/app/common/components/layouts/ui/form';
+import { Input } from '@/app/common/components/layouts/ui/input';
+import { Button } from '@/app/common/components/layouts/ui/button';
+import type { ControllerRenderProps, FieldValues, FieldPath } from 'react-hook-form';
 
 interface PasswordInputProps<
   TFieldValues extends FieldValues,
-  TName extends FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues>,
 > {
   name: TName;
   label: string;
@@ -18,14 +23,11 @@ interface PasswordInputProps<
 
 // confirmPassword用
 
-
-
 export function PasswordInput<
   TFieldValues extends FieldValues,
-  TName extends FieldPath<TFieldValues>
->({ label, placeholder, field }: PasswordInputProps<TFieldValues, TName>)  {
-
-  const [showPassword, setShowPassword] = useState(false)
+  TName extends FieldPath<TFieldValues>,
+>({ label, placeholder, field }: PasswordInputProps<TFieldValues, TName>) {
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <FormItem>
@@ -33,7 +35,7 @@ export function PasswordInput<
       <div className="relative">
         <FormControl>
           <Input
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             placeholder={placeholder}
             {...field}
             className="h-9 sm:h-10 text-sm sm:text-base pr-10"
@@ -47,10 +49,10 @@ export function PasswordInput<
           onClick={() => setShowPassword(!showPassword)}
         >
           {showPassword ? <EyeOffIcon className="h-4 w-4" /> : <EyeIcon className="h-4 w-4" />}
-          <span className="sr-only">{showPassword ? "パスワードを隠す" : "パスワードを表示"}</span>
+          <span className="sr-only">{showPassword ? 'パスワードを隠す' : 'パスワードを表示'}</span>
         </Button>
       </div>
       <FormMessage className="text-xs sm:text-sm" />
     </FormItem>
-  )
+  );
 }

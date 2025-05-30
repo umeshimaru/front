@@ -1,11 +1,17 @@
-import Image from "next/image"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/app/home/components/card"
+import Image from 'next/image';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from '@/app/home/components/card';
 
 interface FeatureProps {
-  title: string
-  description: string
-  imageSrc: string
-  imageAlt: string
+  title: string;
+  description: string;
+  imageSrc: string;
+  imageAlt: string;
 }
 
 export function FeatureCard({ title, description, imageSrc, imageAlt }: FeatureProps) {
@@ -13,7 +19,7 @@ export function FeatureCard({ title, description, imageSrc, imageAlt }: FeatureP
     <Card className="overflow-hidden border-[#5aafb0]/30">
       <CardContent className="p-0">
         <Image
-          src={imageSrc || "/placeholder.svg"}
+          src={imageSrc || '/placeholder.svg'}
           alt={imageAlt}
           width={320}
           height={640}
@@ -22,9 +28,10 @@ export function FeatureCard({ title, description, imageSrc, imageAlt }: FeatureP
       </CardContent>
       <CardHeader className="text-center">
         <CardTitle className="text-xl font-bold text-[#1a1a4b] mb-2">{title}</CardTitle>
-        <CardDescription className="text-gray-600 text-sm leading-relaxed">{description}</CardDescription>
+        <CardDescription className="text-gray-600 text-sm leading-relaxed">
+          {description}
+        </CardDescription>
       </CardHeader>
     </Card>
-  )
+  );
 }
-

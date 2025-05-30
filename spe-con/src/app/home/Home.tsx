@@ -1,19 +1,17 @@
-import Image from "next/image"
-import { Card, CardTitle, CardDescription } from "@/app/home/components/card"
-import { useEffect } from "react"
-
-import { useRouter } from "next/navigation";
-import { useAtom } from 'jotai';
+'use client';
+import Image from 'next/image';
+import { Card, CardTitle, CardDescription } from '@/app/home/components/card';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAtomValue } from 'jotai';
 import { isLoginAtom } from '@/app/atoms/isLoginState';
 export function Home() {
-  const isLogin = useAtom(isLoginAtom);
+  const isLogin = useAtomValue(isLoginAtom);
   const router = useRouter();
 
   useEffect(() => {
-    if (isLogin) 
-      router.push("/practice-menu");
+    if (isLogin) router.push('/practice-menu');
   }, [isLogin, router]);
-
 
   return (
     <>
@@ -41,31 +39,39 @@ export function Home() {
       {/* Concerns Section */}
       <div className="flex flex-col items-center py-16 px-4">
         <div className="text-center mb-12 text-[#5aafb0]">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a4b]">こんなお悩みありませんか？</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a4b]">
+            こんなお悩みありませんか？
+          </h2>
         </div>
 
         <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           {[
             {
-              title: "パッと英語が話せない",
-              description: "ネイティブとの会話中、\n次に話す英語を頭の中で英作文して\nいて話に集中できていない...",
+              title: 'パッと英語が話せない',
+              description:
+                'ネイティブとの会話中、\n次に話す英語を頭の中で英作文して\nいて話に集中できていない...',
             },
             {
-              title: "表現の幅が広がらない",
-              description: "ついつい同じ表現ばかりを\n使ってしまう...",
+              title: '表現の幅が広がらない',
+              description: 'ついつい同じ表現ばかりを\n使ってしまう...',
             },
             {
-              title: "忙しくて時間がない",
-              description: "学校や仕事が忙しく\n時間を取れない...",
+              title: '忙しくて時間がない',
+              description: '学校や仕事が忙しく\n時間を取れない...',
             },
           ].map((concern, index) => (
-            <Card key={index} className="bg-white rounded-lg p-6 shadow-sm border border-[#5aafb0]/30">
-              <CardTitle className="text-[#1a1a4b] text-xl font-bold text-center mb-4">{concern.title}</CardTitle>
+            <Card
+              key={index}
+              className="bg-white rounded-lg p-6 shadow-sm border border-[#5aafb0]/30"
+            >
+              <CardTitle className="text-[#1a1a4b] text-xl font-bold text-center mb-4">
+                {concern.title}
+              </CardTitle>
               <CardDescription className="text-gray-700 text-center text-sm leading-relaxed">
-                {concern.description.split("\n").map((line, i) => (
+                {concern.description.split('\n').map((line, i) => (
                   <span key={i}>
                     {line}
-                    {i < concern.description.split("\n").length - 1 && <br />}
+                    {i < concern.description.split('\n').length - 1 && <br />}
                   </span>
                 ))}
               </CardDescription>
@@ -81,7 +87,9 @@ export function Home() {
         {/* Bottom conclusion */}
         <div className="relative w-full max-w-5xl flex justify-center">
           <div className="border-2 border-[#5aafb0]/30 bg-white rounded-xl px-12 py-6 inline-block">
-            <h2 className="text-[#1a1a4b] text-2xl md:text-3xl font-bold text-center">スピーキング力が伸びないワケ</h2>
+            <h2 className="text-[#1a1a4b] text-2xl md:text-3xl font-bold text-center">
+              スピーキング力が伸びないワケ
+            </h2>
           </div>
         </div>
       </div>
@@ -170,33 +178,33 @@ export function Home() {
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             {
-              title: "瞬間英作文練習",
+              title: '瞬間英作文練習',
               description:
-                "用意された動画とトランスクリプトを読みながらシャドーイングの練習ができます。単語帳に登録された単語と同じものがあったら認識して登録した単語の意味が見れちゃう・録音もできるよ！",
+                '用意された動画とトランスクリプトを読みながらシャドーイングの練習ができます。単語帳に登録された単語と同じものがあったら認識して登録した単語の意味が見れちゃう・録音もできるよ！',
               imageSrc:
-                "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202025-03-07%2015.28.32-N0kW41P66h0ataYDGbfK6jlrll0s7L.png",
-              imageAlt: "瞬間英作文練習 screenshot",
+                'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202025-03-07%2015.28.32-N0kW41P66h0ataYDGbfK6jlrll0s7L.png',
+              imageAlt: '瞬間英作文練習 screenshot',
             },
             {
-              title: "パラフレーズ練習",
+              title: 'パラフレーズ練習',
               description:
-                "問題の英文を読み上げると自動的にマイクに入力された声を採点し、5つの項目でスコアを表示します。レベル切り替え機能やランキング機能もあるよ⭐️",
+                '問題の英文を読み上げると自動的にマイクに入力された声を採点し、5つの項目でスコアを表示します。レベル切り替え機能やランキング機能もあるよ⭐️',
               imageSrc:
-                "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202025-03-07%2015.28.32-N0kW41P66h0ataYDGbfK6jlrll0s7L.png",
-              imageAlt: "パラフレーズ練習 screenshot",
+                'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202025-03-07%2015.28.32-N0kW41P66h0ataYDGbfK6jlrll0s7L.png',
+              imageAlt: 'パラフレーズ練習 screenshot',
             },
             {
-              title: "画像模写練習",
+              title: '画像模写練習',
               description:
-                "自分だけの単語帳を作り、管理できます。登録した単語の発音も聞くことができて、単語登録数をみんなで競い合うこともできる✨",
+                '自分だけの単語帳を作り、管理できます。登録した単語の発音も聞くことができて、単語登録数をみんなで競い合うこともできる✨',
               imageSrc:
-                "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202025-03-07%2015.28.32-N0kW41P66h0ataYDGbfK6jlrll0s7L.png",
-              imageAlt: "画像模写練習 screenshot",
+                'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202025-03-07%2015.28.32-N0kW41P66h0ataYDGbfK6jlrll0s7L.png',
+              imageAlt: '画像模写練習 screenshot',
             },
           ].map((feature, index) => (
             <div key={index} className="text-center">
               <Image
-                src={feature.imageSrc || "/placeholder.svg"}
+                src={feature.imageSrc || '/placeholder.svg'}
                 alt={feature.imageAlt}
                 width={320}
                 height={640}
@@ -219,6 +227,5 @@ export function Home() {
         </button>
       </div>
     </>
-  )
+  );
 }
-
