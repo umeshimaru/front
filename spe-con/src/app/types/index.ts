@@ -1,8 +1,8 @@
-import type { ReactNode } from "react"
+import type { ReactNode } from 'react';
 
 export interface CardProps {
-  title: string
-  description: ReactNode
+  title: string;
+  description: ReactNode;
 }
 
 // 以下の型定義は不要になりました（コンポーネント内で直接定義）
@@ -18,4 +18,3 @@ export interface CardProps {
 //   imageSrc: string
 //   imageAlt: string
 // }
-
