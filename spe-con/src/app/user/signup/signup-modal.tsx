@@ -65,7 +65,7 @@ export function SignupModal({ onSuccess, onSwitchToLogin }: SignupModalProps) {
   // フォーム送信処理
   async function onSubmit(value: SignupFormValues) {
     setIsLoading(true);
-
+console.log(`${process.env.NEXT_PUBLIC_API_URL}/auth`)
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth`, {
         method: 'POST',
