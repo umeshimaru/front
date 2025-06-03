@@ -15,11 +15,16 @@ import {
 } from '@/app/common/components/layouts/ui/form';
 import { Input } from '@/app/common/components/layouts/ui/input';
 import { PasswordInput } from '../components/password-input';
+import { setCookie } from 'cookies-next';
+import { isLoginAtom } from '@/app/atoms/isLoginState';
+import { useAtom } from 'jotai';
+import { useRouter } from 'next/navigation';
+import { ToastContainer, toast } from 'react-toastify';
 
 // フォームのバリデーションスキーマ
 const loginFormSchema = z.object({
-  username: z.string().min(1, {
-    message: 'ユーザー名を入力してください',
+  email: z.string().email({
+    message: '有効なメールアドレスを入力してください',
   }),
   password: z.string().min(1, {
     message: 'パスワードを入力してください',
@@ -34,26 +39,66 @@ interface LoginModalProps {
   onForgotPassword: () => void;
 }
 
+
 export function LoginModal({ onSuccess, onSwitchToSignup, onForgotPassword }: LoginModalProps) {
   const [isLoading, setIsLoading] = useState(false);
+  const [, setIsLogin] = useAtom(isLoginAtom);
+  const router = useRouter();
 
   // フォームの初期化
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
-      username: '',
+      email: '',
       password: '',
     },
   });
+  const { setError } = form;
 
+ 
   // フォーム送信処理
   async function onSubmit(values: LoginFormValues) {
     setIsLoading(true);
 
     try {
-      // ここに実際のログイン処理を実装
-      console.log(values);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/sign_in`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
 
+      const data = await res.json();
+      
+      console.log(data)
+      if (data.errors) {
+        Object.entries(data.errors).forEach(([field, messages]) => {
+          setError(field as keyof LoginFormValues , {
+            type: 'server',
+            message: Array.isArray(messages) ? messages.join('、') : String(messages),
+          });
+        });
+        return;
+      }
+       setCookie('_access_token', res.headers.get('access-token'));
+            setCookie('_client', res.headers.get('client'));
+            setCookie('_uid', res.headers.get('uid'));
+            setIsLogin(true);
+
+      toast.success('😇 ログインしました', {
+        position: 'top-center',
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
+      setTimeout(() => {
+        router.push('/practice-menu');
+      }, 2000);
       // 成功したら3秒後にコールバック実行（デモ用）
       setTimeout(() => {
         if (onSuccess) onSuccess();
@@ -68,17 +113,19 @@ export function LoginModal({ onSuccess, onSwitchToSignup, onForgotPassword }: Lo
 
   return (
     <>
+    <ToastContainer / >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 sm:space-y-4 py-4">
-          <FormField
+        <FormField
             control={form.control}
-            name="username"
+            name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-sm sm:text-base">ユーザー名</FormLabel>
+                <FormLabel className="text-sm sm:text-base">メールアドレス</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="ユーザー名を入力"
+                    type="email"
+                    placeholder="sample@example.com"
                     {...field}
                     className="h-9 sm:h-10 text-sm sm:text-base"
                   />
