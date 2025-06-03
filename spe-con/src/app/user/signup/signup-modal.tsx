@@ -66,6 +66,7 @@ export function SignupModal({ onSuccess, onSwitchToLogin }: SignupModalProps) {
   async function onSubmit(value: SignupFormValues) {
     setIsLoading(true);
 console.log(`${process.env.NEXT_PUBLIC_API_URL}/auth`)
+console.log(`${process.env.NEXT_PUBLIC_NEXT_ENV}`)
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth`, {
         method: 'POST',
