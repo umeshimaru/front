@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/auth/:path*",
-      "destination": "https://www.spe-con.com/auth/:path*"
+      "destination": "https://back-fznr.onrender.com/auth/:path*"
     }
   ]
 }
