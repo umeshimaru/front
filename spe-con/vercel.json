@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/auth/:path*",
+      "destination": "https://www.spe-con.com/auth/:path*"
+    }
+  ]
+}
