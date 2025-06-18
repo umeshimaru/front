@@ -1,10 +1,10 @@
 'use client';
 import Image from 'next/image';
-import { Card, CardTitle, CardDescription } from '@/app/home/components/card';
+import { Card, CardTitle, CardDescription } from '@/app/_home/_components/Card';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAtomValue } from 'jotai';
-import { isLoginAtom } from '@/app/atoms/isLoginState';
+import { isLoginAtom } from '@/stores/isLoginState';
 export function Home() {
   const isLogin = useAtomValue(isLoginAtom);
   const router = useRouter();

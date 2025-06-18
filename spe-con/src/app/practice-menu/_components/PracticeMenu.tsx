@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Languages, RefreshCw, Camera, BookOpen, ChevronRight } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
-import styles from '../styles/practice-menu.module.css';
+import styles from '../_styles/practice-menu.module.css';
 
 interface MenuItem {
   id: string;
