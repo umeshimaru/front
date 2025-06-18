@@ -6,10 +6,10 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@/app/common/components/layouts/ui/dialog';
-import { type AuthMode, AUTH_MODAL_CONFIG } from '@/app/types/modal';
-import { SignupModal } from '../signup/signup-modal';
-import { LoginModal } from '../login/login-modal';
+} from '@/components/atoms/Dialog';
+import { type AuthMode, AUTH_MODAL_CONFIG } from '@/app/_user/_types/modal';
+import { SignupModal } from '../_signup/SignupModal';
+import { LoginModal } from '../_login/LoginModal';
 
 interface BaseModalProps {
   isOpen: boolean;

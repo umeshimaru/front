@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-} from '@/app/home/components/card';
+} from '@/app/_home/_components/Card';
 
 interface FeatureProps {
   title: string;

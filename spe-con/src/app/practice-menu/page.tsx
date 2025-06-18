@@ -1,4 +1,4 @@
-import { PracticeMenu } from '@/app/practice-menu/components/practice-menu';
+import { PracticeMenu } from '@/app/practice-menu/_components/PracticeMenu';
 
 export default function Home() {
   return (

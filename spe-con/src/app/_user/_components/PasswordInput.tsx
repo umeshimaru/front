@@ -6,9 +6,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/app/common/components/layouts/ui/form';
-import { Input } from '@/app/common/components/layouts/ui/input';
-import { Button } from '@/app/common/components/layouts/ui/button';
+} from '@/components/atoms/Form';
+import { Input } from '@/components/atoms/Input';
+import { Button } from '@/components/atoms/Button';
 import type { ControllerRenderProps, FieldValues, FieldPath } from 'react-hook-form';
 
 interface PasswordInputProps<

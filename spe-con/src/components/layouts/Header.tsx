@@ -4,11 +4,11 @@ import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Menu, UserPlus, LogIn, LogOut } from 'lucide-react';
-import { Modal } from '@/app/user/components/modal';
-import type { AuthMode } from '@/app/types/modal';
+import { Modal } from '@/app/_user/_components/Modal';
+import type { AuthMode } from '@/app/_user/_types/modal';
 import { getCookie, deleteCookie } from 'cookies-next';
 import { useAtom } from 'jotai';
-import { isLoginAtom } from '@/app/atoms/isLoginState';
+import { isLoginAtom } from '@/stores/isLoginState';
 import { useRouter } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
 
