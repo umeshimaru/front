@@ -57,7 +57,7 @@ export function Header() {
 
     if (!accessToken || !client || !uid) return;
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/sign_out`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/v1/user/sign_out`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ export function Header() {
       deleteCookie('_client');
       deleteCookie('_uid');
       setIsLogin(false);
-      console.log(res)
+      console.log(res);
       toast.warn('👋 ログアウトしました', {
         position: 'top-center',
         autoClose: 1000,
