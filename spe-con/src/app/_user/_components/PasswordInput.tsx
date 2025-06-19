@@ -1,12 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
-import {
-  FormControl,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/atoms/Form';
+import { FormControl, FormItem, FormLabel, FormMessage } from '@/components/atoms/Form';
 import { Input } from '@/components/atoms/Input';
 import { Button } from '@/components/atoms/Button';
 import type { ControllerRenderProps, FieldValues, FieldPath } from 'react-hook-form';

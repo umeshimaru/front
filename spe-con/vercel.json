@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/auth/:path*",
-      "destination": "https://back-fznr.onrender.com/auth/:path*"
+      "destination": "https://back-fznr.onrender.com/api/:path*"
     }
   ]
 }

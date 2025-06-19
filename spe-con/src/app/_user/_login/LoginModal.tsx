@@ -39,7 +39,6 @@ interface LoginModalProps {
   onForgotPassword: () => void;
 }
 
-
 export function LoginModal({ onSuccess, onSwitchToSignup, onForgotPassword }: LoginModalProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [, setIsLogin] = useAtom(isLoginAtom);
@@ -55,13 +54,12 @@ export function LoginModal({ onSuccess, onSwitchToSignup, onForgotPassword }: Lo
   });
   const { setError } = form;
 
- 
   // フォーム送信処理
   async function onSubmit(values: LoginFormValues) {
     setIsLoading(true);
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/sign_in`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/v1/user/sign_in`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -70,21 +68,21 @@ export function LoginModal({ onSuccess, onSwitchToSignup, onForgotPassword }: Lo
       });
 
       const data = await res.json();
-      
-      console.log(data)
+
+      console.log(data);
       if (data.errors) {
         Object.entries(data.errors).forEach(([field, messages]) => {
-          setError(field as keyof LoginFormValues , {
+          setError(field as keyof LoginFormValues, {
             type: 'server',
             message: Array.isArray(messages) ? messages.join('、') : String(messages),
           });
         });
         return;
       }
-       setCookie('_access_token', res.headers.get('access-token'));
-            setCookie('_client', res.headers.get('client'));
-            setCookie('_uid', res.headers.get('uid'));
-            setIsLogin(true);
+      setCookie('_access_token', res.headers.get('access-token'));
+      setCookie('_client', res.headers.get('client'));
+      setCookie('_uid', res.headers.get('uid'));
+      setIsLogin(true);
 
       toast.success('😇 ログインしました', {
         position: 'top-center',
@@ -113,10 +111,10 @@ export function LoginModal({ onSuccess, onSwitchToSignup, onForgotPassword }: Lo
 
   return (
     <>
-    <ToastContainer / >
+      <ToastContainer />
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 sm:space-y-4 py-4">
-        <FormField
+          <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
